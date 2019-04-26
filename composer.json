@@ -1,0 +1,38 @@
+{
+    "name": "phptaskman/core-tasks",
+    "type": "library",
+    "description": "Core tasks for Taskman.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pol Dellaiera",
+            "email": "pol.dellaiera@protonmail.com"
+        }
+    ],
+    "require": {
+        "php": ">= 7.1",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "codeception/codeception": "^3",
+        "drupol/php-conventions": "^1.3.2"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpTaskman\\CoreTasks\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpTaskman\\CoreTasks\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "codecept": "./vendor/bin/codecept run",
+        "codecept-coverage": "./vendor/bin/codecept run --coverage --coverage-xml --env travis",
+        "grumphp": "./vendor/bin/grumphp run"
+    }
+}
