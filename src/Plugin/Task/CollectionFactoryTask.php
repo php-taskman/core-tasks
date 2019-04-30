@@ -110,7 +110,7 @@ final class CollectionFactoryTask extends BaseTask implements
      */
     protected function secureOption(array &$task, $name, $default)
     {
-        $task[$name] = isset($task[$name]) ? $task['$name'] : $default;
+        $task[$name] = isset($task[$name]) ? $task[$name] : $default;
     }
 
     /**
