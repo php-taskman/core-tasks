@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
@@ -25,11 +23,11 @@ final class CollectionFactoryTask extends BaseTask implements
     use LoadAllTasks;
     use LoadFilesystemTasks;
 
-    public const ARGUMENTS = [
+    const ARGUMENTS = [
         'tasks',
         'options',
     ];
-    public const NAME = 'collectionFactory';
+    const NAME = 'collectionFactory';
 
     /**
      * @var array
@@ -41,7 +39,7 @@ final class CollectionFactoryTask extends BaseTask implements
      */
     public function getHelp()
     {
-        return $this->tasks['help'] ?? 'Yaml command defined in tasks.yml';
+        return isset($this->tasks['help']) ? $this->tasks['help'] : 'Yaml command defined in tasks.yml';
     }
 
     /**
@@ -49,7 +47,7 @@ final class CollectionFactoryTask extends BaseTask implements
      */
     public function getTasks()
     {
-        return $this->tasks['tasks'] ?? $this->tasks;
+        return isset($this->tasks['tasks']) ? $this->tasks['tasks'] : $this->tasks;
     }
 
     /**
@@ -112,7 +110,7 @@ final class CollectionFactoryTask extends BaseTask implements
      */
     protected function secureOption(array &$task, $name, $default)
     {
-        $task[$name] = $task[$name] ?? $default;
+        $task[$name] = isset($task[$name]) ? $task['$name'] : $default;
     }
 
     /**

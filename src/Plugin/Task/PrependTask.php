@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
@@ -12,11 +10,11 @@ final class PrependTask extends BaseTask
 {
     use BuilderAwareTrait;
 
-    public const ARGUMENTS = [
+    const ARGUMENTS = [
         'file',
         'text',
     ];
-    public const NAME = 'prepend';
+    const NAME = 'prepend';
 
     /**
      * {@inheritdoc}

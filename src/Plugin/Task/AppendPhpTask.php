@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\CoreTasks\Plugin\Task\AppendTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Common\ResourceExistenceChecker;
 use Robo\Contract\BuilderAwareInterface;
@@ -18,13 +15,13 @@ class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
     use BuilderAwareTrait;
     use ResourceExistenceChecker;
 
-    public const ARGUMENTS = [
+    const ARGUMENTS = [
         'file',
         'config',
         'blockEnd',
         'blockStart',
     ];
-    public const NAME = 'append.php';
+    const NAME = 'append.php';
 
     /**
      * @throws \Robo\Exception\TaskException
@@ -45,7 +42,7 @@ class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
         // First we remove it from the file if it exists.
         /** @var \Robo\Task\File\Write $writeTask */
         $writeTask = $this->task(Write::class, $arguments['file']);
-        $content = str_replace($configurationBlock, '', $writeTask->originalContents());
+        $content = \str_replace($configurationBlock, '', $writeTask->originalContents());
         $tasksCollection[] = $writeTask->text($content);
 
         // Then we append the text.

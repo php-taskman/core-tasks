@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\Core\Contract\TaskInterface;
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Exception\TaskException;
 
@@ -23,8 +20,8 @@ abstract class BasePhpTask extends BaseTask
     {
         $arguments = $this->getTaskArguments();
 
-        $blockStart = $arguments['blockStart'] ?? '// ';
-        $blockEnd = $arguments['blockEnd'] ?? '// ';
+        $blockStart = isset($arguments['blockStart']) ? $arguments['blockStart'] : '// ';
+        $blockEnd = isset($arguments['blockEnd']) ? $arguments['blockEnd'] : '// ';
         $config = $arguments['config'];
 
         if (!$this->getConfig()->has($config)) {

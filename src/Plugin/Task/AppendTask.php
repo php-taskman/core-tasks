@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
@@ -11,11 +9,11 @@ final class AppendTask extends BaseTask
 {
     use loadTasks;
 
-    public const ARGUMENTS = [
+    const ARGUMENTS = [
         'file',
         'text',
     ];
-    public const NAME = 'append';
+    const NAME = 'append';
 
     /**
      * {@inheritdoc}

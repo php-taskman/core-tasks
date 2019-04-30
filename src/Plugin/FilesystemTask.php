@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin;
 
 use PhpTaskman\Core\Robo\Task\Filesystem\Filesystem;

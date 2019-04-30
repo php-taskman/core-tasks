@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin;
 
 use PhpTaskman\Core\Contract\TaskInterface;
@@ -12,8 +10,8 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements TaskInterface, Bu
 {
     use TaskAccessor;
 
-    public const ARGUMENTS = [];
-    public const NAME = 'NULL';
+    const ARGUMENTS = [];
+    const NAME = 'NULL';
 
     /**
      * @var array
@@ -33,6 +31,7 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements TaskInterface, Bu
         if (empty($argumentsAllowed)) {
             $arguments = $this->arguments;
             unset($arguments['task']);
+
             return $arguments;
         }
 

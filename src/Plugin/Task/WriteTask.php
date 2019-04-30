@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
@@ -13,11 +11,11 @@ final class WriteTask extends BaseTask
     use BuilderAwareTrait;
     use loadTasks;
 
-    public const ARGUMENTS = [
+    const ARGUMENTS = [
         'file',
         'text',
     ];
-    public const NAME = 'write';
+    const NAME = 'write';
 
     /**
      * {@inheritdoc}

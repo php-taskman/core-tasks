@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
@@ -15,8 +13,8 @@ final class RunTask extends BaseTask
     use BuilderAwareTrait;
     use loadTasks;
 
-    public const ARGUMENTS = [];
-    public const NAME = 'run';
+    const ARGUMENTS = [];
+    const NAME = 'run';
 
     /**
      * {@inheritdoc}
