@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\Core\Traits\ConfigurationTokensTrait;
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Common\ResourceExistenceChecker;
@@ -25,6 +24,26 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
         'to',
     ];
     public const NAME = 'process';
+
+    /**
+     * Extract tokens and replace their values with current configuration.
+     *
+     * @param string $text
+     *
+     * @return array
+     */
+    public function extractProcessedTokens($text): array
+    {
+        /** @var \Robo\Config\Config $config */
+        $config = $this->getConfig();
+
+        return \array_map(
+            static function ($key) use ($config) {
+                return $config->get($key);
+            },
+            $this->extractRawTokens($text)
+        );
+    }
 
     /**
      * {@inheritdoc}
@@ -58,26 +77,6 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
         $tasks[] = $replace->from(\array_keys($tokens))->to(\array_values($tokens));
 
         return $this->collectionBuilder()->addTaskList($tasks)->run();
-    }
-
-    /**
-     * Extract tokens and replace their values with current configuration.
-     *
-     * @param string $text
-     *
-     * @return array
-     */
-    public function extractProcessedTokens($text): array
-    {
-        /** @var \Robo\Config\Config $config */
-        $config = $this->getConfig();
-
-        return \array_map(
-            static function ($key) use ($config) {
-                return $config->get($key);
-            },
-            $this->extractRawTokens($text)
-        );
     }
 
     /**

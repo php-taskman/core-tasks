@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\Core\Contract\TaskInterface;
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Exception\TaskException;
 
