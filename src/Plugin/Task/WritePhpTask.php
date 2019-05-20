@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\CoreTasks\Plugin\Task\ProcessTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Task\File\Write;
@@ -50,7 +49,7 @@ class WritePhpTask extends BasePhpTask implements BuilderAwareInterface
             ->collectionBuilder()
             ->addTaskList([
                 $writeTask->text($text),
-                $processTask->setTaskArguments($processTaskArguments)
+                $processTask->setTaskArguments($processTaskArguments),
             ])
             ->run();
     }

@@ -33,6 +33,7 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements TaskInterface, Bu
         if (empty($argumentsAllowed)) {
             $arguments = $this->arguments;
             unset($arguments['task']);
+
             return $arguments;
         }
 

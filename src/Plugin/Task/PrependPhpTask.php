@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\CoreTasks\Plugin\Task\AppendTask;
-use PhpTaskman\CoreTasks\Plugin\Task\PrependTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Common\ResourceExistenceChecker;
 use Robo\Contract\BuilderAwareInterface;
@@ -46,7 +44,7 @@ class PrependPhpTask extends BasePhpTask implements BuilderAwareInterface
         // First we remove it from the file if it exists.
         /** @var \Robo\Task\File\Write $writeTask */
         $writeTask = $this->task(Write::class, $arguments['file']);
-        $content = str_replace(
+        $content = \str_replace(
             [$configurationBlock, '<?php'],
             '',
             $writeTask->originalContents()
