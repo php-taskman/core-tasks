@@ -2,9 +2,7 @@
 
 namespace PhpTaskman\CoreTasks\Plugin\Task\Docker;
 
-use PhpTaskman\Core\Robo\Task\Filesystem\Filesystem;
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
-use Robo\Task\Docker\Exec;
 use Robo\Task\Docker\Run;
 
 final class RunTask extends BaseTask
@@ -28,17 +26,17 @@ final class RunTask extends BaseTask
 
         $task = $this->task(Run::class, $arguments['image']);
 
-        $arguments += array(
+        $arguments += [
             'detached' => false,
             'interactive' => true,
             'tty' => false,
-        );
+        ];
 
-        if ($arguments['tty'] === true) {
+        if (true === $arguments['tty']) {
             $task->option('-t');
         }
 
-        if ($arguments['detached'] === true) {
+        if (true === $arguments['detached']) {
             $task->detached();
         }
 
