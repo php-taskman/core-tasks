@@ -9,10 +9,13 @@ final class RunTask extends BaseTask
 {
     const ARGUMENTS = [
         'detached',
+        'dir',
         'exec',
         'image',
         'name',
+        'rm',
         'tty',
+        'volume',
     ];
 
     const NAME = 'docker.run';
@@ -24,12 +27,16 @@ final class RunTask extends BaseTask
     {
         $arguments = $this->getTaskArguments();
 
+        /** @var \Robo\Task\Docker\Run $task */
         $task = $this->task(Run::class, $arguments['image']);
 
         $arguments += [
             'detached' => false,
             'interactive' => true,
             'tty' => false,
+            'volume' => null,
+            'dir' => \getcwd(),
+            'rm' => true,
         ];
 
         if (true === $arguments['tty']) {
@@ -38,6 +45,20 @@ final class RunTask extends BaseTask
 
         if (true === $arguments['detached']) {
             $task->detached();
+        }
+
+        if (null !== $arguments['volume']) {
+            $volume = \explode(':', $arguments['volume'], 2);
+
+            $task->volume($volume[0], $volume[1]);
+        }
+
+        if (null !== $arguments['dir']) {
+            $task->containerWorkdir($arguments['dir']);
+        }
+
+        if (true === $arguments['rm']) {
+            $task->option('--rm');
         }
 
         return $task
