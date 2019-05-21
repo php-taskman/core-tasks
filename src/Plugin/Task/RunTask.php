@@ -43,7 +43,7 @@ final class RunTask extends BaseTask
         $commandOptions = $command->getDefinition()->getOptions();
 
         // Propagate any input option passed to the child command.
-        foreach ($arguments['options'] as $name => $values) {
+        foreach ($arguments as $name => $values) {
             if (!isset($commandOptions[$name])) {
                 continue;
             }
