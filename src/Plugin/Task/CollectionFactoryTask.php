@@ -129,7 +129,7 @@ final class CollectionFactoryTask extends BaseTask implements
         $this->secureOption($task, 'atime', \time());
         $this->secureOption($task, 'mode', 0777);
 
-        $arguments = \array_merge($this->getTaskArguments(), $task);
+        $arguments = \array_merge($task, $this->getTaskArguments()['options']);
 
         if (!Robo::getContainer()->has('task.' . $task['task'])) {
             throw new TaskException($this, 'Unkown task: ' . $task['task']);
