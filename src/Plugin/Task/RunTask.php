@@ -15,7 +15,9 @@ final class RunTask extends BaseTask
     use BuilderAwareTrait;
     use loadTasks;
 
-    public const ARGUMENTS = [];
+    public const ARGUMENTS = [
+        'options',
+    ];
     public const NAME = 'run';
 
     /**
@@ -24,6 +26,10 @@ final class RunTask extends BaseTask
     public function run()
     {
         $arguments = $this->getTaskArguments();
+
+        $arguments += [
+            'options' => [],
+        ];
 
         $bin = \realpath($this->getConfig()->get('taskman.bin_dir') . '/taskman');
 
