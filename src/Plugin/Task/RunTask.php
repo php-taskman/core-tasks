@@ -17,6 +17,7 @@ final class RunTask extends BaseTask
 
     public const ARGUMENTS = [
         'options',
+        'command',
     ];
     public const NAME = 'run';
 
