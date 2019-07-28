@@ -62,7 +62,9 @@ final class CollectionFactoryTask extends BaseTask implements
 
         foreach ($arguments['tasks'] as $task) {
             if (\is_string($task)) {
-                $collection->addTask($this->taskExec($task));
+                $task = $this->taskExec($task);
+                $task->setVerbosityThreshold($this->verbosityThreshold());
+                $collection->addTask($task);
 
                 continue;
             }
@@ -82,7 +84,9 @@ final class CollectionFactoryTask extends BaseTask implements
                 continue;
             }
 
-            $collection->addTask($this->taskFactory($task));
+            $task = $this->taskFactory($task);
+            $task->setVerbosityThreshold($this->verbosityThreshold());
+            $collection->addTask($task);
         }
 
         return $collection->run();
