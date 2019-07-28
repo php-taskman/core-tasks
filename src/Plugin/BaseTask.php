@@ -8,7 +8,7 @@ use PhpTaskman\Core\Contract\TaskInterface;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\TaskAccessor;
 
-abstract class BaseTask extends \Robo\Task\BaseTask implements TaskInterface, BuilderAwareInterface
+abstract class BaseTask extends \Robo\Task\BaseTask implements BuilderAwareInterface, TaskInterface
 {
     use TaskAccessor;
 
@@ -25,7 +25,7 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements TaskInterface, Bu
      */
     public function getTaskArguments()
     {
-        $argumentsAllowed = \array_combine(
+        $argumentsAllowed = array_combine(
             static::ARGUMENTS,
             static::ARGUMENTS
         );
@@ -38,6 +38,7 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements TaskInterface, Bu
         }
 
         $arguments = [];
+
         foreach ($argumentsAllowed as $argumentName) {
             if (!isset($this->arguments[$argumentName])) {
                 continue;

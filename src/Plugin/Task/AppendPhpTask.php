@@ -44,7 +44,7 @@ class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
         // First we remove it from the file if it exists.
         /** @var \Robo\Task\File\Write $writeTask */
         $writeTask = $this->task(Write::class, $arguments['file']);
-        $content = \str_replace($configurationBlock, '', $writeTask->originalContents());
+        $content = str_replace($configurationBlock, '', $writeTask->originalContents());
         $tasksCollection[] = $writeTask->text($content);
 
         // Then we append the text.

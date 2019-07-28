@@ -44,7 +44,7 @@ class PrependPhpTask extends BasePhpTask implements BuilderAwareInterface
         // First we remove it from the file if it exists.
         /** @var \Robo\Task\File\Write $writeTask */
         $writeTask = $this->task(Write::class, $arguments['file']);
-        $content = \str_replace(
+        $content = str_replace(
             [$configurationBlock, '<?php'],
             '',
             $writeTask->originalContents()

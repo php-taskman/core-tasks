@@ -17,7 +17,7 @@ abstract class FilesystemTask extends BaseTask
     public function run()
     {
         $task = static::NAME;
-        $arguments = \array_values($this->getTaskArguments());
+        $arguments = array_values($this->getTaskArguments());
 
         return $this->task(Filesystem::class)->{$task}(...$arguments)->run();
     }

@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use PhpTaskman\Core\Robo\Task\Filesystem\LoadFilesystemTasks;
+use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Contract\SimulatedInterface;
 use Robo\Exception\TaskException;
@@ -58,7 +58,6 @@ final class CollectionFactoryTask extends BaseTask implements
     public function run()
     {
         $arguments = $this->getTaskArguments();
-
         $collection = $this->collectionBuilder();
 
         foreach ($arguments['tasks'] as $task) {
@@ -92,7 +91,7 @@ final class CollectionFactoryTask extends BaseTask implements
     /**
      * {@inheritdoc}
      */
-    public function simulate($context)
+    public function simulate($context): void
     {
         foreach ($this->getTasks() as $task) {
             if (\is_array($task)) {
@@ -110,7 +109,7 @@ final class CollectionFactoryTask extends BaseTask implements
      * @param string $name
      * @param mixed  $default
      */
-    protected function secureOption(array &$task, $name, $default)
+    protected function secureOption(array &$task, $name, $default): void
     {
         $task[$name] = $task[$name] ?? $default;
     }
@@ -127,11 +126,11 @@ final class CollectionFactoryTask extends BaseTask implements
         $this->secureOption($task, 'force', false);
         $this->secureOption($task, 'umask', 0000);
         $this->secureOption($task, 'recursive', false);
-        $this->secureOption($task, 'time', \time());
-        $this->secureOption($task, 'atime', \time());
+        $this->secureOption($task, 'time', time());
+        $this->secureOption($task, 'atime', time());
         $this->secureOption($task, 'mode', 0777);
 
-        $arguments = \array_merge($task, $this->getTaskArguments()['options']);
+        $arguments = array_merge($task, $this->getTaskArguments()['options']);
 
         if (!Robo::getContainer()->has('task.' . $task['task'])) {
             throw new TaskException($this, 'Unkown task: ' . $task['task']);

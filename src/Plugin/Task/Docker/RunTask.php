@@ -9,7 +9,7 @@ use Robo\Task\Docker\Run;
 
 final class RunTask extends BaseTask
 {
-    const ARGUMENTS = [
+    public const ARGUMENTS = [
         'detached',
         'dir',
         'exec',
@@ -20,7 +20,7 @@ final class RunTask extends BaseTask
         'volume',
     ];
 
-    const NAME = 'docker.run';
+    public const NAME = 'docker.run';
 
     /**
      * {@inheritdoc}
@@ -37,7 +37,7 @@ final class RunTask extends BaseTask
             'interactive' => true,
             'tty' => false,
             'volume' => null,
-            'dir' => \getcwd(),
+            'dir' => getcwd(),
             'rm' => true,
         ];
 
@@ -50,7 +50,7 @@ final class RunTask extends BaseTask
         }
 
         if (null !== $arguments['volume']) {
-            $volume = \explode(':', $arguments['volume'], 2);
+            $volume = explode(':', $arguments['volume'], 2);
 
             $task->volume($volume[0], $volume[1]);
         }
