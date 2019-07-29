@@ -121,9 +121,7 @@ final class CollectionFactoryTask extends BaseTask implements
     /**
      * @param array $task
      *
-     * @throws \Robo\Exception\TaskException
-     *
-     * @return \Robo\Contract\TaskInterface
+     * @return \PhpTaskman\Core\Contract\TaskInterface
      */
     protected function taskFactory(array $task)
     {
@@ -137,17 +135,13 @@ final class CollectionFactoryTask extends BaseTask implements
         $arguments = array_merge($task, $this->getTaskArguments()['options']);
 
         if (!Robo::getContainer()->has('task.' . $task['task'])) {
-            throw new TaskException($this, 'Unkown task: ' . $task['task']);
+            throw new TaskException($this, 'Unknown task: ' . $task['task']);
         }
 
         /** @var \PhpTaskman\Core\Contract\TaskInterface $taskFactory */
         $taskFactory = Robo::getContainer()->get('task.' . $task['task']);
         $taskFactory->setTaskArguments($arguments);
 
-        return $this
-            ->collectionBuilder()
-            ->addTaskList([
-                $taskFactory,
-            ]);
+        return $taskFactory;
     }
 }

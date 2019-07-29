@@ -10,6 +10,9 @@ use Robo\Contract\BuilderAwareInterface;
 use Robo\Task\Base\Exec;
 use Robo\Task\File\loadTasks;
 
+/**
+ * Class YamlTask.
+ */
 final class YamlTask extends BaseTask implements BuilderAwareInterface
 {
     use BuilderAwareTrait;
@@ -44,7 +47,10 @@ final class YamlTask extends BaseTask implements BuilderAwareInterface
         $collectionBuilder = $this->collectionBuilder();
 
         foreach ($tasks as $task) {
-            $collectionBuilder->addTask($this->task(Exec::class, $task));
+            $task = $this->task(Exec::class, $task);
+            $task->setVerbosityThreshold($this->verbosityThreshold());
+
+            $collectionBuilder->addTask($task);
         }
 
         return $collectionBuilder->run();
