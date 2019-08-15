@@ -4,17 +4,15 @@ declare(strict_types = 1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
-use Robo\Common\BuilderAwareTrait;
+use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\ResourceExistenceChecker;
-use Robo\Contract\BuilderAwareInterface;
 use Robo\Task\File\Replace;
 
 /**
  * Class Replace.
  */
-class ReplaceTask extends BasePhpTask implements BuilderAwareInterface
+class ReplaceTask extends BaseTask
 {
-    use BuilderAwareTrait;
     use ResourceExistenceChecker;
 
     public const ARGUMENTS = [
