@@ -28,6 +28,7 @@ Taskman Core tasks.
 | `process`     | `from`, `to` |
 | `remove`      | `file` |
 | `rename`      | `from`, `to`, `force` (false) |
+| `replace`     | `file`, `from`, `to` |
 | `symlink`     | `from`, `to`, `copyOnWindows` (false) |
 | `touch`       | `file`, `time` (current time), `atime` (current time) |
 | `write`       | `file`, `text` |
