@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task\Docker;
 
@@ -37,7 +37,7 @@ final class RunTask extends BaseTask
             'interactive' => true,
             'tty' => false,
             'volume' => null,
-            'dir' => getcwd(),
+            'dir' => \getcwd(),
             'rm' => true,
         ];
 
@@ -50,7 +50,7 @@ final class RunTask extends BaseTask
         }
 
         if (null !== $arguments['volume']) {
-            $volume = explode(':', $arguments['volume'], 2);
+            $volume = \explode(':', $arguments['volume'], 2);
 
             $task->volume($volume[0], $volume[1]);
         }

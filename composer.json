@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "codeception/codeception": "^3",
-        "drupol/php-conventions": "^1.5.8"
+        "drupol/php-conventions": "^1.5.12"
     },
     "config": {
         "sort-packages": true

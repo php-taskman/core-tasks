@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpTaskman\CoreTasks\Plugin;
 
@@ -25,7 +25,7 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements BuilderAwareInter
      */
     public function getTaskArguments()
     {
-        $argumentsAllowed = array_combine(
+        $argumentsAllowed = \array_combine(
             static::ARGUMENTS,
             static::ARGUMENTS
         );

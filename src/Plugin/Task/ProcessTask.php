@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
@@ -37,7 +37,7 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
         /** @var \Robo\Config\Config $config */
         $config = $this->getConfig();
 
-        return array_map(
+        return \array_map(
             static function ($key) use ($config) {
                 return $config->get($key);
             },
@@ -62,7 +62,7 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
             return Result::error($this, "Source file '{$from}' does not exists.");
         }
 
-        $sourceContent = file_get_contents($from);
+        $sourceContent = \file_get_contents($from);
 
         if (false === $sourceContent) {
             return Result::error($this, "Unable to read source file '{$from}'.");
@@ -75,7 +75,7 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
         if ($from !== $to) {
             $tasks[] = $filesystem->copy($from, $to, true);
         }
-        $tasks[] = $replace->from(array_keys($tokens))->to(array_values($tokens));
+        $tasks[] = $replace->from(\array_keys($tokens))->to(\array_values($tokens));
 
         return $this->collectionBuilder()->addTaskList($tasks)->run();
     }
@@ -89,10 +89,10 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
      */
     private function extractRawTokens($text): array
     {
-        preg_match_all('/\$\{(([A-Za-z_\-]+\.?)+)\}/', $text, $matches);
+        \preg_match_all('/\$\{(([A-Za-z_\-]+\.?)+)\}/', $text, $matches);
 
         if (isset($matches[0]) && !empty($matches[0]) && \is_array($matches[0])) {
-            if (false !== $return = array_combine($matches[0], $matches[1])) {
+            if (false !== $return = \array_combine($matches[0], $matches[1])) {
                 return $return;
             }
         }

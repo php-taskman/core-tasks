@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
@@ -48,12 +48,12 @@ abstract class BasePhpTask extends BaseTask
 
         $line['stop'] = $blockEnd;
 
-        $textChecksum = sha1(json_encode($line));
+        $textChecksum = \sha1(\json_encode($line));
 
         $line['start'] .= '(' . $textChecksum . ')';
         $line['stop'] .= '(' . $textChecksum . ')';
 
-        return implode("\n", $line);
+        return \implode("\n", $line);
     }
 
     /**
@@ -71,16 +71,16 @@ abstract class BasePhpTask extends BaseTask
      */
     protected function getStatement($variable, $name, $value)
     {
-        $output = var_export($value, true);
+        $output = \var_export($value, true);
 
         if (\is_array($value)) {
-            $output = str_replace(
+            $output = \str_replace(
                 [' ', "\n", '=>', ',)', '),'],
                 ['', '', ' => ', ')', '), '],
                 $output
             );
         }
 
-        return sprintf("$%s['%s'] = %s;", $variable, $name, $output);
+        return \sprintf("$%s['%s'] = %s;", $variable, $name, $output);
     }
 }

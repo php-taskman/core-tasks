@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
@@ -128,11 +128,11 @@ final class CollectionFactoryTask extends BaseTask implements
         $this->secureOption($task, 'force', false);
         $this->secureOption($task, 'umask', 0000);
         $this->secureOption($task, 'recursive', false);
-        $this->secureOption($task, 'time', time());
-        $this->secureOption($task, 'atime', time());
+        $this->secureOption($task, 'time', \time());
+        $this->secureOption($task, 'atime', \time());
         $this->secureOption($task, 'mode', 0777);
 
-        $arguments = array_merge($task, $this->getTaskArguments()['options']);
+        $arguments = \array_merge($task, $this->getTaskArguments()['options']);
 
         if (!Robo::getContainer()->has('task.' . $task['task'])) {
             throw new TaskException($this, 'Unknown task: ' . $task['task']);
