@@ -15,7 +15,10 @@ final class RunTask extends BaseTask
     use BuilderAwareTrait;
     use loadTasks;
 
-    public const ARGUMENTS = [];
+    public const ARGUMENTS = [
+        'options',
+        'command',
+    ];
     public const NAME = 'run';
 
     /**
@@ -25,9 +28,13 @@ final class RunTask extends BaseTask
     {
         $arguments = $this->getTaskArguments();
 
-        $bin = \realpath($this->getConfig()->get('taskman.bin_dir') . '/taskman');
+        $arguments += [
+            'options' => [],
+        ];
 
-        if (false === $bin) {
+        $bin = $this->getConfig()->get('options.bin', null);
+
+        if (null === $bin) {
             throw new TaskException(__CLASS__, 'Unable to find the taskman binary');
         }
 
