@@ -23,7 +23,7 @@ final class RunTask extends BaseTask
     {
         $arguments = $this->getTaskArguments();
 
-        $bin = \realpath($this->getConfig()->get('taskman.bin_dir') . '/taskman');
+        $bin = \realpath($this->getConfig()->get('options.bin'));
 
         if (false === $bin) {
             throw new TaskException(__CLASS__, 'Unable to find the taskman binary');
