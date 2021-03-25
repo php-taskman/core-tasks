@@ -10,12 +10,14 @@
         }
     ],
     "require": {
-        "php": ">= 7.1.3",
+        "php": ">= 7.4",
         "ext-json": "*"
     },
     "require-dev": {
+        "phptaskman/core": "^2",
         "codeception/codeception": "^3",
-        "drupol/php-conventions": "^1.5.12"
+        "consolidation/robo": "^3",
+        "drupol/php-conventions": "^3"
     },
     "config": {
         "sort-packages": true

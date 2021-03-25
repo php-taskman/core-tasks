@@ -6,17 +6,17 @@ namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\BuilderAwareTrait;
-use Robo\Task\File\loadTasks;
 
 final class ConcatTask extends BaseTask
 {
     use BuilderAwareTrait;
-    use loadTasks;
+    use \Robo\Task\File\Tasks;
 
     public const ARGUMENTS = [
         'files',
         'to',
     ];
+
     public const NAME = 'concat';
 
     /**

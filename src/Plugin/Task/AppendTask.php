@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
-use Robo\Task\File\loadTasks;
 
 final class AppendTask extends BaseTask
 {
-    use loadTasks;
+    use \Robo\Task\File\Tasks;
 
     public const ARGUMENTS = [
         'file',
         'text',
     ];
+
     public const NAME = 'append';
 
     /**

@@ -14,5 +14,6 @@ final class ChmodTask extends FilesystemTask
         'umask',
         'recursive',
     ];
+
     public const NAME = 'chmod';
 }

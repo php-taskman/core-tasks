@@ -8,17 +8,17 @@ use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Exception\TaskException;
 use Robo\Robo;
-use Robo\Task\Base\loadTasks;
 
 final class RunTask extends BaseTask
 {
     use BuilderAwareTrait;
-    use loadTasks;
+    use \Robo\Task\Base\Tasks;
 
     public const ARGUMENTS = [
         'options',
         'command',
     ];
+
     public const NAME = 'run';
 
     /**

@@ -12,5 +12,6 @@ final class MirrorTask extends FilesystemTask
         'from',
         'to',
     ];
+
     public const NAME = 'mirror';
 }

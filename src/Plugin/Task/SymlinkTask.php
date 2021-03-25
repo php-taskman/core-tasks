@@ -13,5 +13,6 @@ final class SymlinkTask extends FilesystemTask
         'to',
         'copyOnWindows',
     ];
+
     public const NAME = 'symlink';
 }

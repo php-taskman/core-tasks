@@ -13,5 +13,6 @@ final class RenameTask extends FilesystemTask
         'to',
         'force',
     ];
+
     public const NAME = 'rename';
 }

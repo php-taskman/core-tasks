@@ -8,10 +8,7 @@ use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\ResourceExistenceChecker;
 use Robo\Task\File\Replace;
 
-/**
- * Class Replace.
- */
-class ReplaceTask extends BaseTask
+final class ReplaceTask extends BaseTask
 {
     use ResourceExistenceChecker;
 
@@ -20,6 +17,7 @@ class ReplaceTask extends BaseTask
         'from',
         'to',
     ];
+
     public const NAME = 'replace';
 
     /**

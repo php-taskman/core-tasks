@@ -13,5 +13,6 @@ final class ChownTask extends FilesystemTask
         'user',
         'recursive',
     ];
+
     public const NAME = 'chown';
 }

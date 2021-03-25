@@ -13,19 +13,14 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements BuilderAwareInter
     use TaskAccessor;
 
     public const ARGUMENTS = [];
+
     public const NAME = 'NULL';
 
-    /**
-     * @var array
-     */
-    private $arguments;
+    private array $arguments;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTaskArguments()
     {
-        $argumentsAllowed = \array_combine(
+        $argumentsAllowed = array_combine(
             static::ARGUMENTS,
             static::ARGUMENTS
         );
@@ -50,9 +45,6 @@ abstract class BaseTask extends \Robo\Task\BaseTask implements BuilderAwareInter
         return $arguments;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setTaskArguments(array $arguments = [])
     {
         $this->arguments = $arguments;

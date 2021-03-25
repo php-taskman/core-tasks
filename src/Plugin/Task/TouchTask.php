@@ -13,5 +13,6 @@ final class TouchTask extends FilesystemTask
         'time',
         'atime',
     ];
+
     public const NAME = 'touch';
 }

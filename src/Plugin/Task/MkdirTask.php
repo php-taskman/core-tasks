@@ -12,5 +12,6 @@ final class MkdirTask extends FilesystemTask
         'dir',
         'mode',
     ];
+
     public const NAME = 'mkdir';
 }

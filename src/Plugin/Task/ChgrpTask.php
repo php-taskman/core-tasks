@@ -13,5 +13,6 @@ final class ChgrpTask extends FilesystemTask
         'group',
         'recursive',
     ];
+
     public const NAME = 'chgrp';
 }

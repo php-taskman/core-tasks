@@ -9,35 +9,35 @@ use Robo\Common\BuilderAwareTrait;
 use Robo\Common\ResourceExistenceChecker;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Result;
-use Robo\Task\File\loadTasks;
 use Robo\Task\File\Replace;
 use Robo\Task\Filesystem\FilesystemStack;
+
+use function is_array;
 
 final class ProcessTask extends BaseTask implements BuilderAwareInterface
 {
     use BuilderAwareTrait;
-    use loadTasks;
     use ResourceExistenceChecker;
+    use \Robo\Task\File\Tasks;
 
     public const ARGUMENTS = [
         'from',
         'to',
     ];
+
     public const NAME = 'process';
 
     /**
      * Extract tokens and replace their values with current configuration.
      *
      * @param string $text
-     *
-     * @return array
      */
     public function extractProcessedTokens($text): array
     {
         /** @var \Robo\Config\Config $config */
         $config = $this->getConfig();
 
-        return \array_map(
+        return array_map(
             static function ($key) use ($config) {
                 return $config->get($key);
             },
@@ -62,7 +62,7 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
             return Result::error($this, "Source file '{$from}' does not exists.");
         }
 
-        $sourceContent = \file_get_contents($from);
+        $sourceContent = file_get_contents($from);
 
         if (false === $sourceContent) {
             return Result::error($this, "Unable to read source file '{$from}'.");
@@ -75,7 +75,7 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
         if ($from !== $to) {
             $tasks[] = $filesystem->copy($from, $to, true);
         }
-        $tasks[] = $replace->from(\array_keys($tokens))->to(\array_values($tokens));
+        $tasks[] = $replace->from(array_keys($tokens))->to(array_values($tokens));
 
         return $this->collectionBuilder()->addTaskList($tasks)->run();
     }
@@ -84,15 +84,13 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
      * Extract token in given text.
      *
      * @param string $text
-     *
-     * @return array
      */
     private function extractRawTokens($text): array
     {
-        \preg_match_all('/\$\{(([A-Za-z_\-]+\.?)+)\}/', $text, $matches);
+        preg_match_all('/\$\{(([A-Za-z_\-]+\.?)+)\}/', $text, $matches);
 
-        if (isset($matches[0]) && !empty($matches[0]) && \is_array($matches[0])) {
-            if (false !== $return = \array_combine($matches[0], $matches[1])) {
+        if (isset($matches[0]) && !empty($matches[0]) && is_array($matches[0])) {
+            if (false !== $return = array_combine($matches[0], $matches[1])) {
                 return $return;
             }
         }

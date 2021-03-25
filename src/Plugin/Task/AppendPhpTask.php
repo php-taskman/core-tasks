@@ -9,10 +9,7 @@ use Robo\Common\ResourceExistenceChecker;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Task\File\Write;
 
-/**
- * Class AppendConfiguration.
- */
-class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
+final class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
 {
     use BuilderAwareTrait;
     use ResourceExistenceChecker;
@@ -23,6 +20,7 @@ class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
         'blockEnd',
         'blockStart',
     ];
+
     public const NAME = 'append.php';
 
     /**
@@ -44,7 +42,7 @@ class AppendPhpTask extends BasePhpTask implements BuilderAwareInterface
         // First we remove it from the file if it exists.
         /** @var \Robo\Task\File\Write $writeTask */
         $writeTask = $this->task(Write::class, $arguments['file']);
-        $content = \str_replace($configurationBlock, '', $writeTask->originalContents());
+        $content = str_replace($configurationBlock, '', $writeTask->originalContents());
         $tasksCollection[] = $writeTask->text($content);
 
         // Then we append the text.

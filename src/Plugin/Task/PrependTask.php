@@ -16,6 +16,7 @@ final class PrependTask extends BaseTask
         'file',
         'text',
     ];
+
     public const NAME = 'prepend';
 
     /**
@@ -36,7 +37,7 @@ final class PrependTask extends BaseTask
         $writeTask = $this->task(Write::class, $arguments['file']);
 
         return $this->collectionBuilder()->addTaskList([
-            $writeTask->text($arguments['text'] . \file_get_contents($arguments['file'])),
+            $writeTask->text($arguments['text'] . file_get_contents($arguments['file'])),
             $processTask,
         ])->run();
     }

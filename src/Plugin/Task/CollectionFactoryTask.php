@@ -13,11 +13,9 @@ use Robo\LoadAllTasks;
 use Robo\Robo;
 use Symfony\Component\Yaml\Yaml;
 
-/**
- * Class CollectionFactoryTask.
- *
- * Return a task collection given its array representation.
- */
+use function is_array;
+use function is_string;
+
 final class CollectionFactoryTask extends BaseTask implements
     BuilderAwareInterface,
     SimulatedInterface
@@ -29,6 +27,7 @@ final class CollectionFactoryTask extends BaseTask implements
         'tasks',
         'options',
     ];
+
     public const NAME = 'collectionFactory';
 
     /**
@@ -61,7 +60,7 @@ final class CollectionFactoryTask extends BaseTask implements
         $collection = $this->collectionBuilder();
 
         foreach ($arguments['tasks'] as $task) {
-            if (\is_string($task)) {
+            if (is_string($task)) {
                 $task = $this->taskExec($task);
                 $task->setVerbosityThreshold($this->verbosityThreshold());
                 $collection->addTask($task);
@@ -69,7 +68,7 @@ final class CollectionFactoryTask extends BaseTask implements
                 continue;
             }
 
-            if (!\is_array($task)) {
+            if (!is_array($task)) {
                 // Todo: Error.
                 continue;
             }
@@ -79,7 +78,7 @@ final class CollectionFactoryTask extends BaseTask implements
                 continue;
             }
 
-            if (!\is_string($task['task'])) {
+            if (!is_string($task['task'])) {
                 // Todo: Error.
                 continue;
             }
@@ -98,7 +97,7 @@ final class CollectionFactoryTask extends BaseTask implements
     public function simulate($context): void
     {
         foreach ($this->getTasks() as $task) {
-            if (\is_array($task)) {
+            if (is_array($task)) {
                 $task = Yaml::dump($task, 0);
             }
 
@@ -109,7 +108,6 @@ final class CollectionFactoryTask extends BaseTask implements
     /**
      * Secure option value.
      *
-     * @param array  $task
      * @param string $name
      * @param mixed  $default
      */
@@ -119,8 +117,6 @@ final class CollectionFactoryTask extends BaseTask implements
     }
 
     /**
-     * @param array $task
-     *
      * @return \PhpTaskman\Core\Contract\TaskInterface
      */
     protected function taskFactory(array $task)
@@ -128,11 +124,11 @@ final class CollectionFactoryTask extends BaseTask implements
         $this->secureOption($task, 'force', false);
         $this->secureOption($task, 'umask', 0000);
         $this->secureOption($task, 'recursive', false);
-        $this->secureOption($task, 'time', \time());
-        $this->secureOption($task, 'atime', \time());
+        $this->secureOption($task, 'time', time());
+        $this->secureOption($task, 'atime', time());
         $this->secureOption($task, 'mode', 0777);
 
-        $arguments = \array_merge($task, $this->getTaskArguments()['options']);
+        $arguments = array_merge($task, $this->getTaskArguments()['options']);
 
         if (!Robo::getContainer()->has('task.' . $task['task'])) {
             throw new TaskException($this, 'Unknown task: ' . $task['task']);

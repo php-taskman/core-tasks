@@ -13,5 +13,6 @@ final class CopyTask extends FilesystemTask
         'to',
         'force',
     ];
+
     public const NAME = 'copy';
 }

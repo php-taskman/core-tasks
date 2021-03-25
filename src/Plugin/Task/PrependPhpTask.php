@@ -9,9 +9,6 @@ use Robo\Common\ResourceExistenceChecker;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Task\File\Write;
 
-/**
- * Class PrependConfiguration.
- */
 class PrependPhpTask extends BasePhpTask implements BuilderAwareInterface
 {
     use BuilderAwareTrait;
@@ -23,6 +20,7 @@ class PrependPhpTask extends BasePhpTask implements BuilderAwareInterface
         'blockEnd',
         'blockStart',
     ];
+
     public const NAME = 'prepend.php';
 
     /**
@@ -44,7 +42,7 @@ class PrependPhpTask extends BasePhpTask implements BuilderAwareInterface
         // First we remove it from the file if it exists.
         /** @var \Robo\Task\File\Write $writeTask */
         $writeTask = $this->task(Write::class, $arguments['file']);
-        $content = \str_replace(
+        $content = str_replace(
             [$configurationBlock, '<?php'],
             '',
             $writeTask->originalContents()

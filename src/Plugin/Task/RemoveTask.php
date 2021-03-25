@@ -11,5 +11,6 @@ final class RemoveTask extends FilesystemTask
     public const ARGUMENTS = [
         'file',
     ];
+
     public const NAME = 'remove';
 }
