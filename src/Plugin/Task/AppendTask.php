@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace PhpTaskman\CoreTasks\Plugin\Task;
 
 use PhpTaskman\CoreTasks\Plugin\BaseTask;
+use Robo\Task\File\Tasks;
 
 final class AppendTask extends BaseTask
 {
-    use \Robo\Task\File\Tasks;
+    use Tasks;
 
     public const ARGUMENTS = [
         'file',

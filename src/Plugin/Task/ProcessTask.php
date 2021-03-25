@@ -9,6 +9,7 @@ use Robo\Common\BuilderAwareTrait;
 use Robo\Common\ResourceExistenceChecker;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Result;
+use Robo\Task\File\Tasks;
 use Robo\Task\File\Replace;
 use Robo\Task\Filesystem\FilesystemStack;
 
@@ -18,7 +19,7 @@ final class ProcessTask extends BaseTask implements BuilderAwareInterface
 {
     use BuilderAwareTrait;
     use ResourceExistenceChecker;
-    use \Robo\Task\File\Tasks;
+    use Tasks;
 
     public const ARGUMENTS = [
         'from',

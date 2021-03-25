@@ -8,11 +8,12 @@ use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Exception\TaskException;
 use Robo\Robo;
+use Robo\Task\Base\Tasks;
 
 final class RunTask extends BaseTask
 {
     use BuilderAwareTrait;
-    use \Robo\Task\Base\Tasks;
+    use Tasks;
 
     public const ARGUMENTS = [
         'options',

@@ -8,23 +8,15 @@ use PhpTaskman\CoreTasks\Plugin\BaseTask;
 use Robo\Common\BuilderAwareTrait;
 use Robo\Contract\BuilderAwareInterface;
 use Robo\Task\Base\Exec;
+use Robo\Task\File\Tasks;
 
-/**
- * Class YamlTask.
- */
 final class YamlTask extends BaseTask implements BuilderAwareInterface
 {
     use BuilderAwareTrait;
-    use \Robo\Task\File\Tasks;
+    use Tasks;
 
-    /**
-     * @var array
-     */
-    private $definition;
+    private array $definition;
 
-    /**
-     * YamlTask constructor.
-     */
     public function __construct(array $definition)
     {
         $this->definition = $definition;
