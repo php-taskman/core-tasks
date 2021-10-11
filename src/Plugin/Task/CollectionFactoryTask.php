@@ -62,6 +62,12 @@ final class CollectionFactoryTask extends BaseTask implements
 
         foreach ($arguments['tasks'] as $task) {
             if (\is_string($task)) {
+                // For some reason command specified options are not being
+                // resolved to their value unlike global options are. This
+                // should probably be resolved earlier in the callstack.
+                foreach($arguments['options'] as $optionKey => $optionValue) {
+                    $task = str_replace('${options.' . $optionKey . '}', $optionValue, $task);
+                }
                 $task = $this->taskExec($task);
                 $task->setVerbosityThreshold($this->verbosityThreshold());
                 $collection->addTask($task);
